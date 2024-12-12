@@ -70,5 +70,65 @@ const departments = {
         ],
     }
 }
+// Opdracht 1
+// console.log(departments);
+// console.log("De afdeling Sales heeft " + departments.sales.numberOfEmployees + " medewerkers");
+// console.log("Marketing is een leuke afdeling om te werken. " + departments.marketing.description + ".");
+// console.log("De afdeling Customer Service heeft " + departments["customer-service"].numberOfEmployees + " medewerkers");
+// console.log("Sales is een uitdagende afdeling om te werken als Verkoopmanager. " + departments.sales.jobs[1].description);
 
-console.log(departments);
+// Opdracht 2, 3, 4 en 5
+const userInputDepartment = prompt("Over welke afdeling wil je meer informatie? Kies uit: [marketing / sales / customer-service]");
+console.log(userInputDepartment);
+
+let departmentDescription = '';
+let chosenDepartment = '';
+let employeesDepartment = '';
+
+switch (userInputDepartment) {
+    case 'marketing':
+    case 'sales':
+    case 'customer-service':
+        departmentDescription = departments[userInputDepartment].description;
+        chosenDepartment = userInputDepartment;
+        employeesDepartment = departments[userInputDepartment].numberOfEmployees;
+        break;
+    default:
+        console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.")
+        document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
+}
+if (departmentDescription) {
+    console.log("Je koos " + userInputDepartment + ". " + departmentDescription);
+    console.log(chosenDepartment + " is een leuke afdeling om te werken. Er werken op dit moment " + employeesDepartment + " medewerkers.")
+}
+
+const userInputFunction = prompt("Je koos " + userInputDepartment + ". Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in.\n" +
+    "0: " + departments[userInputDepartment].jobs[0].title + ",\n" +
+    "1: " + departments[userInputDepartment].jobs[1].title + ",\n" +
+    "2: " + departments[userInputDepartment].jobs[2].title + ",\n" +
+    "3: " + departments[userInputDepartment].jobs[3].title);
+
+console.log(userInputFunction);
+
+let jobDescription = "";
+let jobTitle = "";
+
+switch (userInputFunction) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+        jobDescription = departments[userInputDepartment].jobs[userInputFunction].description;
+        jobTitle = departments[userInputDepartment].jobs[userInputFunction].title;
+        break;
+    default:
+        console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.")
+        document.getElementById('error-message').textContent = 'Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.';
+}
+if (jobDescription) {
+    console.log("Je koos " + jobTitle + ". Een uitdagende rol! " + jobDescription);
+    document.getElementById('role-title').textContent = jobTitle;
+    document.getElementById('department-description').textContent = departmentDescription;
+    document.getElementById('role-description').textContent = jobDescription;
+}
+
